@@ -19,12 +19,13 @@ HOST-SUFFIX,theverge.com,Global
 HOST-SUFFIX,vsco.co,Global
 # revenuecat
 HOST-SUFFIX,revenuecat.com,Global
+
 # qianoo
-HOST-SUFFIX,qianoo.com,Streaming
+HOST-SUFFIX,qianoo.com,DIRECT
 # libvio
-HOST-SUFFIX,libvio.com,Streaming
+HOST-SUFFIX,libvio.com,DIRECT
 # zhenbuka3
-HOST-SUFFIX,zhenbuka3.com,Streaming
+HOST-SUFFIX,zhenbuka3.com,DIRECT
 
 # bayescom
 HOST-SUFFIX,bayescom.com,REJECT
