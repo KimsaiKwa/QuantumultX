@@ -20,20 +20,6 @@ HOST-SUFFIX,vsco.co,Global
 # revenuecat
 HOST-SUFFIX,revenuecat.com,Global
 
-# qianoo
-HOST-SUFFIX,qianoo.com,DIRECT
-# libvio
-HOST-SUFFIX,libvio.com,DIRECT
-# zhenbuka3
-HOST-SUFFIX,zhenbuka3.com,DIRECT
-
-# bayescom
-HOST-SUFFIX,bayescom.com,REJECT
-# applovin
-HOST-SUFFIX,applovin.com,REJECT
-# applvn
-HOST-SUFFIX,applvn.com,REJECT
-
 # ～ NicoNico
 host, ads.nicovideo.jp, reject
 # ～ HDO
