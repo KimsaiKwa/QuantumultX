@@ -98,14 +98,10 @@ HOST, log.ihuman.com, REJECT
 HOST, dc.114dev.com, REJECT
 
 # ~ DIRECT❌
-HOST, gateway.icloud.com, DIRECT
 HOST, www.libvio.com, DIRECT
 HOST, www.zzzfun.com, DIRECT
 HOST, www.zhenbuka3.com, DIRECT
 HOST, www.abskoop.com, DIRECT
-
 HOST-SUFFIX, qianoo.cn, DIRECT
 HOST-SUFFIX, nfmovies.com, DIRECT
-HOST-SUFFIX, apple.com, DIRECT
-
 HOST-KEYWORD, bimiacg, DIRECT
