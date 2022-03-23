@@ -90,7 +90,7 @@ HOST, moment-app-team.s3.amazonaws.com, REJECT
 HOST, pgapi.ksmobile.com, REJECT
 HOST, pangolin.snssdk.com, REJECT
 HOST, iconfactory.com, REJECT
-HOST, ocsp.apple.com, REJECT
+# HOST, ocsp.apple.com, REJECT
 HOST, img.offeryeah.online, REJECT
 HOST, img.cdn.famobi.com, REJECT
 HOST, static.alookbrowser.com, REJECT
