@@ -57,7 +57,7 @@ HOST-SUFFIX, govhebie.cn, REJECT
 
 HOST, ad.12306.cn, REJECT
 HOST, ads.95516.com, REJECT
-HOST, token.safebrowsing.apple, REJECT
+# HOST, token.safebrowsing.apple, REJECT
 HOST, tnc3-aliec2.snssdk.com, REJECT
 HOST, upload-images.jianshu.io, REJECT
 HOST, static-assets-44d.pages.dev, REJECT
