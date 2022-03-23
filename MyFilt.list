@@ -11,6 +11,7 @@ USER-AGENT,AVOS*,REJECT
 
 # 召唤师
 HOST-SUFFIX,zhs.cloud,Global
+HOST-SUFFIX,zhs.tw,Global
 # unsplash
 HOST-SUFFIX,unsplash.com,Global
 # TheVerge
