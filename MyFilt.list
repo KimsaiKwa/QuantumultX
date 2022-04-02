@@ -21,6 +21,9 @@ HOST-SUFFIX,vsco.co,Global
 # revenuecat
 HOST-SUFFIX,revenuecat.com,Global
 
+# ～ 真不卡
+DOMAIN-SUFFIX, ttayy.cn, reject
+DOMAIN-SUFFIX, zhengxiaoliu.top, reject
 # ～ NicoNico
 host, ads.nicovideo.jp, reject
 # ～ HDO
@@ -29,6 +32,8 @@ DOMAIN-SUFFIX,applvn.com,REJECT
 # ～ 美颜相机去首页和轮播广告
 host, adui.tg.meitu.com, reject
 host, aaid.uyunad.com, reject
+# ～ 爱奇艺广告屏蔽
+ip-cidr, 203.107.63.154/32, reject
 # ～ 多多视频去开屏广告
 host-suffix, bayescom.com, reject
 # ～ 车来了（包括小程序）
