@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+    rsshub:
+        # two ways to enable puppeteer:
+        # * comment out marked lines, then use this image instead: diygod/rsshub:chromium-bundled
+        # * (consumes more disk space and memory) leave everything unchanged
+        image: diygod/rsshub
+        restart: always
+        ports:
+            - '1200:1200'
+        environment:
+            NODE_ENV: production
+            CACHE_TYPE: redis
+            REDIS_URL: 'redis://redis:6379/'
+            PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000'  # marked
+            IG_USERNAME: kejinshi
+            IG_PASSWORD: sRdonUonqfxTA7Po
+            BILIBILI_COOKIE_122945880: l=v; buvid3=4CF484A1-DDE0-A33B-E1C6-06A13997400831071infoc; i-wanna-go-back=-1; CURRENT_BLACKGAP=0; buvid_fp_plain=undefined; LIVE_BUVID=AUTO3716480357686947; rpdid=|(J|JuJR)Jkm0J'uYR)|Rk|Rm; _uuid=B2DA34FF-E766-F5B7-284B-C44BD557549872924infoc; fingerprint=6ce861d5eb205b1d062c7dcef619e9b9; SESSDATA=5a21e508,1665322969,52440*41; bili_jct=0c2a0412021b8fe1735e7bc7b847d576; DedeUserID=122945880; DedeUserID__ckMd5=a6a61149b6ffe115; sid=kc6f6uj5; hit-dyn-v2=1; CURRENT_QUALITY=116; buvid4=01940E73-F125-33F3-6D59-910B66B9543B07669-022052021-yrIQpL5sXHGWgyHwqVyYcQ==; buvid_fp=971a6c9ad843ee3d46ebf2600d08208f; blackside_state=0; nostalgia_conf=-1; b_ut=5; b_nut=100; CURRENT_FNVAL=4048; bp_video_offset_122945880=711225259882184700
+            YOUTUBE_KEY: AIzaSyA5iG40KruL6BX_vAG13_t1Dwlt7ZTk0RE
+            NEWRANK_COOKIE: token=CF7399AA8170471F8BF62F95D9B84142
+        depends_on:
+            - redis
+            - browserless  # marked
+
+    browserless:  # marked
+        image: browserless/chrome  # marked
+        restart: always  # marked
+        ulimits:  # marked
+          core:  # marked
+            hard: 0  # marked
+            soft: 0  # marked
+
+    redis:
+        image: redis:alpine
+        restart: always
+        volumes:
+            - redis-data:/data
+
+volumes:
+    redis-data:
