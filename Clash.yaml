@@ -54,47 +54,47 @@ proxies:
 
             
 proxy-groups:
-  - name: 🚀 手动切换
+  - name: 手动切换
     type: select
     use:
       - All
     proxies:
-      - ✈️ 自动选择
+      - 自动选择
 
-  - name: ✈️ 自动选择
+  - name: 自动选择
     type: url-test
     use: 
        - All
     url: "http://www.gstatic.com/generate_204"
     interval: 300
 
-  - name: 🌏 国外网站
+  - name: Global
     type: select
     proxies:
-      - 🚀 手动切换
-      - ✈️ 自动选择
+      - 手动切换
+      - 自动选择
       - DIRECT
 
-  - name: 🎬 YouTube
+  - name: YouTube
     type: select
     proxies:
-      - 🚀 手动切换
-      - ✈️ 自动选择
+      - 手动切换
+      - 自动选择
       - DIRECT
 
-  - name: 🎬 NETFLIX
+  - name: NETFLIX
     type: select
     proxies:
-      - 🚀 手动切换
-      - ✈️ 自动选择
+      - 手动切换
+      - 自动选择
       - DIRECT
 
   - name: Final
     type: select
     proxies:
       - DIRECT
-      - ✈️ 自动选择
-      - 🚀 手动切换
+      - 自动选择
+      - 手动切换
 
 
 rule-providers:
@@ -175,16 +175,16 @@ rule-providers:
 
 rules:
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,Global_Classical, 🚀 手动切换
+  - RULE-SET,Global_Classical, 手动切换
   - RULE-SET,adblock, REJECT
-  - RULE-SET,YouTube,🎬 YouTube
-  - RULE-SET,Netflix,🎬 NETFLIX
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,Netflix,NETFLIX
   - RULE-SET,Apple, DIRECT
   - RULE-SET,Microsoft, DIRECT
 
   - RULE-SET,China, DIRECT
 
-  - DOMAIN-SUFFIX,github.com,🚀 手动切换
+  - DOMAIN-SUFFIX,github.com,手动切换
 
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
