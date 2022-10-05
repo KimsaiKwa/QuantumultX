@@ -175,7 +175,7 @@ rule-providers:
 
 rules:
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,Global_Classical, ✈️ 自动选择
+  - RULE-SET,Global_Classical, 🚀 手动切换
   - RULE-SET,adblock, REJECT
   - RULE-SET,YouTube,🎬 YouTube
   - RULE-SET,Netflix,🎬 NETFLIX
@@ -184,7 +184,7 @@ rules:
 
   - RULE-SET,China, DIRECT
 
-  - DOMAIN-SUFFIX,github.com,✈️ 自动选择
+  - DOMAIN-SUFFIX,github.com,🚀 手动切换
 
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
