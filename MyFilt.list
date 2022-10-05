@@ -8,6 +8,8 @@ HOST,mqtt.zhihu.com,reject
 HOST,sugar.zhihu.com,reject
 USER-AGENT,AVOS*,REJECT
 
+# Zionladder
+HOST-KEYWORD,zionladder,Global
 # 召唤师
 HOST-SUFFIX,zhs.cloud,Global
 HOST-SUFFIX,zhs.tw,Global
