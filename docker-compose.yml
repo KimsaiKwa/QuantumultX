@@ -58,8 +58,6 @@ services:
     aliyundrive_subscribe:
         image: 'looby/aliyundrive-subscribe:latest'  
         restart: always
-        volumes:
-            - '/etc/alist:/opt/alist/data'
         ports:
             - '8002:8002'
         environment:
