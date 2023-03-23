@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
     rsshub:
@@ -39,7 +39,10 @@ services:
         restart: always
         volumes:
             - redis-data:/data
+
+
     alist:
+        image: 'xhofe/alist:latest'   
         restart: always
         volumes:
             - '/etc/alist:/opt/alist/data'
@@ -50,7 +53,21 @@ services:
             - PGID=0
             - UMASK=022
         container_name: alist
-        image: 'xhofe/alist:latest'            
+         
+        
+    aliyundrive_subscribe:
+        image: 'looby/aliyundrive-subscribe:latest'  
+        restart: always
+        volumes:
+            - '/etc/alist:/opt/alist/data'
+        ports:
+            - '8002:8002'
+        environment:
+            - app-notify-hiflow=https://api.hiflow.tencent.com/engine/webhook/31/1638862738816126978
+            - aliyundrive-refresh-token=2e63df409a8043f18780a3cfa37b729d
+            - aliyundrive-root=root/900 娱乐/910 电视电影
+        container_name: aliyundrive_subscribe
+
 
 volumes:
     redis-data:
