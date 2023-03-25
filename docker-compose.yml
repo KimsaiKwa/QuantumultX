@@ -54,17 +54,15 @@ services:
             - UMASK=022
         container_name: alist
          
-        
-    aliyundrive_subscribe:
-        image: 'looby/aliyundrive-subscribe:latest'  
-        restart: always
+         
+    aliyundrive-subscribe:
+        image: 'looby/aliyundrive-subscribe:latest'
+        container_name: alisub
+        volumes:
+            - /opt/apps/sub/conf:/app/conf #：左侧修改成自己的目录，在conf 目录下创建app.ini，app.ini 按照要求填写初始化信息就好
         ports:
             - '8002:8002'
-        environment:
-            - app-notify-hiflow=https://api.hiflow.tencent.com/engine/webhook/31/1638862738816126978
-            - aliyundrive-refresh-token=2e63df409a8043f18780a3cfa37b729d
-            - aliyundrive-root=root/900 娱乐/910 电视电影
-        container_name: aliyundrive_subscribe
+        restart: unless-stopped    
 
 
 volumes:
