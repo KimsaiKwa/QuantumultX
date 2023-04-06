@@ -17,7 +17,7 @@ services:
         image: 'looby/aliyundrive-subscribe:latest'
         restart: always
         volumes:
-            - '/etc/alisub:/app/alisub/conf' #：左侧修改成自己的目录，在conf 目录下创建app.ini，app.ini 按照要求填写初始化信息就好
+            - '/etc/alisub/conf:/app/conf' #：左侧修改成自己的目录，在conf 目录下创建app.ini，app.ini 按照要求填写初始化信息就好
         ports:
             - '8002:8002'
         container_name: alisub 
