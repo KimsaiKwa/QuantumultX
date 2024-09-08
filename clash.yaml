@@ -1,134 +1,171 @@
-port: 7890           # HTTP 代理端口
-socks-port: 7891     # Socks 端口
-redir-port: 7892     # Redir 端口
-mixed-port: 7893     # 混合端口
-allow-lan: true      # 允许局域网连接
-bind-address: "*"    # 地址绑定
-mode: rule           # 规则模式
-log-level: info      # 日志级别
-ipv6: false          # IPV6开关
+# 请使用最新版Clash
+# 将proxy-providers里面链接中的“你的订阅链接”全部替换即可
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: true
 external-controller: 127.0.0.1:9090
 
+
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+proxy-providers:
+  # 全部节点
+  All:
+    type: http
+    url: "https://cloudfront-cdn-hk-iplc1.com/sub/r/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8KWfsKiw6DCicKx"
+    # url: "https://api.v1.mk/sub?target=clash&url=你的订阅链接&list=true&udp=true"
+    # 可以使用任意类型的链接替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；也可以将Clash订阅链接替换掉整个引号""内的链接
+    interval: 3600
+    path: ./Proxy/all.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      url: http://www.gstatic.com/generate_204
+
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 dns:
-  enable: true       # 不使用系统 DNS
-  ipv6: false        # 关闭 IPV6
-  listen: 0.0.0.0:53 # dns 监听
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.4.4
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "*.lan"
+    - '*.lan'
     - localhost.ptlogin2.qq.com
-    - +.srv.nintendo.net
-    - +.stun.playstation.net
-    - +.msftconnecttest.com
-    - +.msftncsi.com
-    - +.xboxlive.com
-    - msftconnecttest.com
-    - xbox.*.microsoft.com
-    - "*.battlenet.com.cn"
-    - "*.battlenet.com"
-    - "*.blzstatic.cn"
-    - "*.battle.net"
-  nameserver:        # 默认 DNS 服务
-    - 223.5.5.5
-    - 119.29.29.29
-  fallback:          # 国外 DNS 服务器
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  nameserver:
+    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-#========= 建立锚点 =========#
+    - https://dns.google/dns-query
+ 
 
-# 策略组引用
-pr:   &a3 {type: select,   proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, DIRECT] }
-p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
-auto: &a4 {type: url-test, lazy: true,  url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe] }
-use:  &a2 {type: select,   use: [Subscribe] }
-c:    &a6 {type: http,     behavior: classical, interval: 86400}
-d:    &a5 {type: http,     behavior: domain,    interval: 86400}
-i:    &a7 {type: http,     behavior: ipcidr,    interval: 86400}
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+proxies:
 
-proxy-providers:
-  Subscribe:
-    <<: *a1
-    url: https://cloudfront-cdn-hk-iplc1.com/sub/r/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8KWfsKiw6DCicKx/
-    # URL后面填写格式1[单一订阅]: 直接填写你的机场Clash订阅[推荐此种方式，避免订阅泄露]
-    # URL后面填写格式2[多个订阅]：https://api.nexconvert.com/sub?target=clash&url=请手动填入你的订阅(多机场订阅用|分割即可)&emoji=true&list=true&new_name=true&udp=false
-    path: ./proxy_providers/tmp.yaml
-    
-proxies: null
+
+
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------            
 proxy-groups:
-#分流分组
-  - {name: 🚀 手动切换, <<: *a2}
-  - {name: 🌏 全球加速, <<: *a3}
-  - {name: 🍎 苹果服务, <<: *a3}
-  - {name: 📺 哔哩哔哩, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点]}
-  - {name: 🤖 OpenAi,   type: select, proxies: [🇺🇲 美国节点]}
-  - {name: 🎬 国际媒体, <<: *a3}
-  - {name: 🌌 谷歌服务, <<: *a3}
-  - {name: 📟 电报消息, <<: *a3}
-  - {name: 🐦 推特服务, <<: *a3}
-  - {name: 🎮 游戏平台, <<: *a3}
-  - {name: 🆎 AdBlock, type: select, proxies: [REJECT]}
-  - {name: 🐟 兜底分流, <<: *a3}
-  
-#节点分组
-  - {name: ♻️ 自动选择, <<: *a4}
-  - {name: 🇭🇰 香港节点, <<: *a4, filter: "港|HK|(?i)Hong"           }             # a4更改为a2，即为手动选择
-  - {name: 🇯🇵 日本节点, <<:  *a4, filter: "日|东京|JP|(?i)Japan"     }             # a4更改为a2，即为手动选择     
-  - {name: 🇨🇳 台湾节点, <<: *a4, filter: "台|湾|TW|(?i)Taiwan"      }             # a4更改为a2，即为手动选择
-  - {name: 🇺🇲 美国节点, <<: *a4, filter: "美|US|(?i)States|American"}             # a4更改为a2，即为手动选择
-  - {name: 🇸🇬 狮城节点, <<: *a4, filter: "新|坡|SG|(?i)Singapore"    }            # a4更改为a2，即为手动选择
 
-# 分流规则 
+  - name: Global
+    type: select
+    use: 
+       - All
+    url: "http://www.gstatic.com/generate_204"
+    interval: 3600   
+
+  # >-------------------------------------------------   
+  - name: Google
+    type: select
+    use: 
+       - All
+    url: "http://www.gstatic.com/generate_204"
+    interval: 3600 
+
+  - name: Microsoft
+    type: select
+    proxies:
+      - DIRECT
+      - Global    
+
+  - name: OpenAI
+    type: select
+    use: 
+       - All
+    url: "http://www.gstatic.com/generate_204"
+    interval: 3600            
+
+  - name: Final
+    type: select
+    proxies:
+      - DIRECT
+      - Global
+              
+
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 rule-providers:
-  Direct:      {<<: *a5, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml,                      path: ./ruleset/Direct.yaml       }
-  Lan:         {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml,                            path: ./ruleset/Lan.yaml          }
-  Download:    {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Download/Download.yaml,                  path: ./ruleset/Download.yaml     }
-  Ad:          {<<: *a5, url: https://anti-ad.net/clash.yaml,                                                                                     path: ./ruleset/anti-ad-clash.yaml}
-  OpenAi:      {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml,                      path: ./ruleset/OpenAi.yaml       }
-  BiliBili:    {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml,                  path: ./ruleset/BiliBili.yaml     }
-  Bahamut:     {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml,                    path: ./ruleset/Bahamut.yaml      } 
-  GlobalMedia: {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml,  path: ./ruleset/GlobalMedia.yaml  }
-  Apple:       {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml,              path: ./ruleset/Apple.yaml        }
-  Github:      {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml,                      path: ./ruleset/Github.yaml       }
-  Microsoft:   {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml,                path: ./ruleset/Microsoft.yaml    }
-  Google:      {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml,                      path: ./ruleset/Google.yaml       }
-  Telegram:    {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml,                  path: ./ruleset/Telegram.yaml     }
-  Twitter:     {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml,                    path: ./ruleset/Twitter.yaml      }
-  Game:        {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml,                          path: ./ruleset/Game.yaml         }
-  ChinaIP:     {<<: *a7, url: https://cdn.jsdelivr.net/gh/soffchen/GeoIP2-CN@release/clash-rule-provider.yml,                                     path: ./ruleset/ChinaIP.yaml      }
-  ProxyLite:   {<<: *a6, url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ProxyLite/ProxyLite.yaml,                path: ./ruleset/ProxyLite.yaml    }
-  
- # 分流Policy 
+
+  Direct:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml"
+    path: ./ruleset/direct.yaml
+    interval: 86400    
+
+  China:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/China/China.yaml"
+    path: ./ruleset/China.yaml
+    interval: 86400  
+
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
+    path: ./ruleset/Google.yaml
+    interval: 86400 
+
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./ruleset/Microsoft.yaml
+    interval: 86400 
+
+  OpenAI:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/OpenAI.yaml
+    interval: 86400    
+
+  Global_Classical:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@release/rule/Clash/Global/Global_Classical.yaml"
+    path: ./ruleset/Global_Classical.yaml
+    interval: 86400
+
+
+# >-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 rules:
-  - RULE-SET,Direct,DIRECT
-  - RULE-SET,Lan,DIRECT
-  - RULE-SET,Download,DIRECT
-  - RULE-SET,Ad,🆎 AdBlock
-  - RULE-SET,OpenAi,🤖 OpenAi
-  - RULE-SET,BiliBili,📺 哔哩哔哩
-  - RULE-SET,Bahamut,📺 哔哩哔哩
-  - RULE-SET,GlobalMedia,🎬 国际媒体
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Github,🌏 全球加速
-  - RULE-SET,Microsoft, 🌏 全球加速
-  - RULE-SET,Google,🌌 谷歌服务
-  - RULE-SET,Telegram,📟 电报消息
-  - RULE-SET,Twitter,🌏 全球加速
-  - RULE-SET,Game,🎮 游戏平台
-  - RULE-SET,ProxyLite,🌏 全球加速
-  - RULE-SET,ChinaIP,DIRECT
-  - GEOIP,CN,DIRECT
-  - MATCH,🐟 兜底分流
+  # ！！！优先级高
+  # > 自定义
+  - DOMAIN-SUFFIX,notion.so,DIRECT
 
-
-# TUN模式是通过在操作系统上安装一个虚拟网卡来实现的，它可以接管所有的网络流量，并将流量转发至Clash，然后由Clash发出请求
-# Windows 系统中如何启用TUN模式
-# 1、运行 Clash For Windows, 确保使用规则模式，并可以联网
-# 2、点击 General中的Service Mode右侧的Manage按钮，在弹出窗口中选择schtasks，安装服务模式。安装完成后，应用程序会自动重启，Service Mode右侧的地球图标变为绿色表示安装成功
-# 3、点击 General中的TUN Mode右侧的开关以启动TUN模式
+  # > rule-providers
+  - RULE-SET, Direct, DIRECT
+  - RULE-SET, China, DIRECT
+  - RULE-SET, Google, Google 
+  - RULE-SET, Microsoft, Microsoft 
+  - RULE-SET, OpenAI, OpenAI  
+  - RULE-SET, Global_Classical, Global
+  
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR,fe80::/10,DIRECT
+  - IP-CIDR,119.28.28.28/32,DIRECT
+  - IP-CIDR,182.254.116.0/24,DIRECT
+  - GEOIP,CN, DIRECT
+  - MATCH,Final
