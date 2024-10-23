@@ -150,6 +150,7 @@ rules:
   # ！！！优先级高
   # > 自定义
   - DOMAIN-SUFFIX,notion.so,DIRECT
+  - DOMAIN-SUFFIX,equasis.org,DIRECT
 
   # > rule-providers
   - RULE-SET, Direct, DIRECT
