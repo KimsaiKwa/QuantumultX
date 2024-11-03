@@ -15,9 +15,7 @@ proxy-providers:
   All:
     type: http
     #url: "https://cloudfront-cdn-hk-iplc1.com/sub/r/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8KWfsKiw6DCicKx"
-    # url: "https://sub4.haiqilai.lol/api/v1/client/subscribe?token=46229f60a7c5e2435131508d899d3c29"
-    url: "https://api.v1.mk/sub?target=clash&url=https://sub4.haiqilai.lol/api/v1/client/subscribe?token=46229f60a7c5e2435131508d899d3c29|https://cloudfront-cdn-hk-iplc1.com/sub/q/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8KWfsKiw6DCicKx/&list=true&udp=true"
-    # 可以使用任意类型的链接替换上面文字，多个链接使用英文符号的竖杠|隔开一起写上即可；也可以将Clash订阅链接替换掉整个引号""内的链接
+    url: "https://sub4.haiqilai.lol/api/v1/client/subscribe?token=46229f60a7c5e2435131508d899d3c29"
     interval: 3600
     path: ./Proxy/all.yaml
     health-check:
@@ -151,6 +149,10 @@ rules:
   # > 自定义
   - DOMAIN-SUFFIX,notion.so,DIRECT
   - DOMAIN-SUFFIX,equasis.org,DIRECT
+  - DOMAIN-SUFFIX,橘色云.xyz,Global
+  - DOMAIN-SUFFIX,zionladder.com,Global
+  - DOMAIN-SUFFIX,zionladderp.com,Global
+  - DOMAIN-SUFFIX,github.com,Global
 
   # > rule-providers
   - RULE-SET, Direct, DIRECT
