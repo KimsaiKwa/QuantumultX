@@ -14,7 +14,7 @@ proxy-providers:
   # 全部节点
   All:
     type: http
-    #url: "https://cloudfront-cdn-hk-iplc1.com/sub/r/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8KWfsKiw6DCicKx"
+    #url: "https://cloudfront-cdn-hk-iplc1.com/sub/x/esKBesKowp7ChcKEbcKfwrbCucK9dsOTw53Cv8K7acK5wq3Cq8K6/"
     url: "https://sub4.haiqilai.lol/api/v1/client/subscribe?token=46229f60a7c5e2435131508d899d3c29"
     interval: 3600
     path: ./Proxy/all.yaml
