@@ -26,6 +26,11 @@ HOST-SUFFIX,vsco.co, Global
 HOST-SUFFIX, replit.com, DIRECT
 # > Zionladder
 HOST-KEYWORD,zionladder, Global
+HOST-SUFFIX,efcloud3.cc, Global
+HOST-SUFFIX,new.yuyan.lol, Global
+HOST-SUFFIX,yuyan.co, Global
+HOST-SUFFIX,yuyan.lol, Global
+HOST-SUFFIX,yuyan.online, Global
 
 ##### > > 媒体
 # > 影视资源
