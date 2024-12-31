@@ -160,6 +160,8 @@ rules:
   - DOMAIN-SUFFIX,zionladder.com,Global
   - DOMAIN-SUFFIX,zionladderp.com,Global
   - DOMAIN-SUFFIX,github.com,Global
+  - DOMAIN-SUFFIX,efcloud3.cc,Global
+  - DOMAIN-SUFFIX,navilands.openocean.studio/,Global
 
   # > rule-providers
   - RULE-SET, Direct, DIRECT
